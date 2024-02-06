@@ -9,7 +9,7 @@ source as (
 renamed as (
 
     select
-        date_date as date,
+        date_date,
         product_id,
         quantity
 
