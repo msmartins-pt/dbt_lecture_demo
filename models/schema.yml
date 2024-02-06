@@ -1,21 +1,25 @@
 
 version: 2
 
-models:
-    - name: my_first_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+sources:
+  - name: lw_da_l17
+    description: dataset for demo class
+    tables:
+      - name: raw_cc_sales
+        description: sales of products
+        tests:
+          - unique:
+              column_name: "(product_id || '-' || date_date)"
 
-    - name: my_second_dbt_model
-      description: "A starter dbt model"
-      columns:
-          - name: id
-            description: "The primary key for this table"
-            tests:
-                - unique
-                - not_null
+      - name: raw_cc_stock
+        description: stock of products
+
+models:
+  - name: stg_lw_da_l17__raw_cc_sales
+    description: cleaning raw sales 
+
+  - name: stg_lw_da_l17__raw_cc_stock
+    description: cleaning raw stock
+
+  - name: int_stock_sales
+    description: intermidiate sales view 
